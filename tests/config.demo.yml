@@ -1,0 +1,8 @@
+items:
+  - title: foo func
+    type: raw
+    value: |
+      function foo {
+        echo "foo"
+      }
+    shell: [bash]

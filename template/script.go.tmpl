@@ -1,0 +1,119 @@
+{{- define "bash:comment" -}}
+# {{ .Value }}
+{{- end -}}
+
+{{- define "fish:comment" -}}
+# {{ .Value }}
+{{- end -}}
+
+{{- define "pwsh:comment" -}}
+# {{ .Value }}
+{{- end -}}
+
+{{- define "bash:env" -}}
+export {{ .Name }}={{ .Value }}
+{{- end -}}
+
+{{- define "fish:env" -}}
+set -gx {{ .Name }} {{ .Value }}
+{{- end -}}
+
+{{- define "pwsh:env" -}}
+$env:{{ .Name }} = "{{ .Value }}"
+{{- end -}}
+
+{{- define "bash:path" -}}
+export PATH={{ .Value }}{{ .Separator }}$PATH
+{{- end -}}
+
+{{- define "fish:path" -}}
+set -gx PATH {{ .Value }}{{ .Separator }}$PATH
+{{- end -}}
+
+{{- define "pwsh:path" -}}
+$env:PATH = "{{ .Value }}{{ .Separator }}$env:PATH"
+{{- end -}}
+
+{{- define "bash:alias" -}}
+alias {{ .Name }}='{{ .Value }}'
+{{- end -}}
+
+{{- define "fish:alias" -}}
+alias {{ .Name }}='{{ .Value }}'
+{{- end -}}
+
+{{- define "pwsh:alias" -}}
+Set-Alias -Name {{ .Name }} -Value "{{ .Value }}"
+{{- end -}}
+
+{{- define "bash:source" -}}
+source {{ .Value }}
+{{- end -}}
+
+{{- define "fish:source" -}}
+source {{ .Value }}
+{{- end -}}
+
+{{- define "pwsh:source" -}}
+. "{{ .Value }}"
+{{- end -}}
+
+{{- define "bash:test" -}}
+[ {{ .Operator }} {{ .Value }} ]
+{{- end -}}
+
+{{- define "fish:test" -}}
+test {{ .Operator }} {{ .Value }}
+{{- end -}}
+
+{{- define "pwsh:test" -}}
+Test-Path {{ .Value }}
+{{- end -}}
+
+{{- define "bash:type" -}}
+type {{ .Command }} > /dev/null 2>&1
+{{- end -}}
+
+{{- define "fish:type" -}}
+type -q {{ .Command }}
+{{- end -}}
+
+{{- define "pwsh:type" -}}
+Get-Command {{ .Command }} -ErrorAction SilentlyContinue
+{{- end -}}
+
+{{- define "bash:if" -}}
+if {{ .Condition }}; then
+{{- range $i, $v := .Values }}
+    {{ $v }}
+{{- end }}
+fi
+{{- end -}}
+
+{{- define "fish:if" -}}
+if {{ .Condition }}
+{{- range $i, $v := .Values }}
+    {{ $v }}
+{{- end }}
+end
+{{- end -}}
+
+{{- define "pwsh:if" -}}
+if ({{ .Condition }}) {
+  {{- range $i, $v := .Values }}
+    {{ $v }}
+  {{- end }}
+}
+{{- end -}}
+
+{{- define "bash:and" -}}
+{{ .Left }} && {{ .Right }}
+{{- end -}}
+
+{{- define "fish:and" -}}
+{{ .Left }}; and {{ .Right }}
+{{- end -}}
+
+{{- define "pwsh:and" -}}
+if ({{ .Left }}) { {{ .Right }} }
+{{- end -}}

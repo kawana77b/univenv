@@ -1,0 +1,85 @@
+items:
+  # Basic
+  - title: env example
+    type: env
+    name: RIPGREP_CONFIG_PATH
+    value: $HOME/.ripgreprc
+
+  - title: alias example
+    type: alias
+    name: fd
+    value: fd-find
+
+  - title: comment example
+    type: comment
+    value: The following changes the result depending on the specified shell
+
+  - title: source example (bash)
+    type: source
+    value: $HOME/configs/foo.sh
+    shell: [bash]
+
+  - title: source example (fish)
+    type: source
+    value: $HOME/configs/foo.fish
+    shell: [fish]
+
+  - title: source example (pwsh)
+    type: source
+    value: $HOME/configs/foo.ps1
+    shell: [pwsh]
+
+  - title: path example
+    type: path
+    value: $HOME/go/bin
+
+  - title: hide this item
+    type: comment
+    value: This item is hidden
+    disabled: true
+
+  - type: comment
+    value: If you don't want to add a space above, just don't set the title, like this. Then add three line breaks at the bottom
+    lf: 3
+
+  - type: raw
+    value: |-
+      # This is a raw item
+      # You can write anything here
+      # This is useful when you want to write a script
+
+  # Conditional
+  - title: command conditional example
+    type: path
+    value: $HOME/.dotnet/tools
+    command: dotnet
+
+  - title: directory conditional example
+    type: path
+    value: $HOME/.cargo/bin
+    directory: $HOME/.cargo
+
+  - title: if-command
+    type: if-command
+    value: docker
+    items:
+      - type: alias
+        name: dc
+        value: docker compose
+
+      - type: alias
+        name: dcu
+        value: docker compose up
+
+      - type: alias
+        name: dcd
+        value: docker compose down
+
+  - title: if-directory
+    type: if-directory
+    value: $HOME/.local/bin
+    items:
+      - type: path
+        value: $HOME/.local/bin
+    # If you are using Windows, this will not output!
+    os: [linux, darwin]
