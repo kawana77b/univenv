@@ -8,7 +8,7 @@
   // Features to add to the dev container. More info: https://containers.dev/features.
   "features": {
     "ghcr.io/guiyomh/features/goreleaser:0": {},
-    "ghcr.io/meaningful-ooo/devcontainer-features/fish:1": {},
+    "ghcr.io/meaningful-ooo/devcontainer-features/fish:2": {},
     "ghcr.io/devcontainers/features/powershell:1": {}
   },
 
