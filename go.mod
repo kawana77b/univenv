@@ -4,7 +4,7 @@ go 1.24.11
 
 require (
 	github.com/go-playground/validator/v10 v10.30.1
-	github.com/spf13/cobra v1.10.1
+	github.com/spf13/cobra v1.10.2
 	gopkg.in/yaml.v3 v3.0.1
 )
 
